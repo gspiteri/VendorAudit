@@ -1,7 +1,7 @@
 ﻿
 namespace VendorAuditTracker.Webapi.Services
 {
-    public class ReleaseService
+    public interface IReleaseService
     {
     }
 }
