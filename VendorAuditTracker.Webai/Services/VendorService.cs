@@ -1,6 +1,8 @@
 ﻿
+using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Interfaces;
 using VendorAuditTracker.Webapi.Models;
 
@@ -41,6 +43,23 @@ namespace VendorAuditTracker.Webapi.Services
 
             _auditDbContext.Entry(vendor).State = EntityState.Modified;
             return await _auditDbContext.SaveChangesAsync();
+        }
+
+        public async Task<VendorResponse> GetAll()
+        {
+            var response = new VendorResponse();
+            try
+            {
+                var vendors = await _auditDbContext.Vendors.ToListAsync();
+                response.IsSuccessful = true;
+                response.Vendors = vendors;
+            }
+            catch (Exception ex)
+            {
+                response.Errors.Add(ex.ToString());
+                response.IsSuccessful = false;
+            }
+            return response;
         }
     }
 }

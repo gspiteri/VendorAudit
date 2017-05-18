@@ -2,31 +2,35 @@
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using VendorAuditTracker.Webapi.Interfaces;
+using VendorAuditTracker.Webapi.Models;
 using VendorAuditTracker.Webapi.Services;
 
 namespace VendorAuditTracker.Webapi
 {
     public class AutofacConfig
     {
-        public static void RegisterComponents()
+        public static IContainer Register(HttpConfiguration config)
+        {
+            var container = Configure();
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            return container;
+        }
+
+        public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
-
-            // Get your HttpConfiguration.
-            var config = GlobalConfiguration.Configuration;
-
-            // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            // OPTIONAL: Register the Autofac filter provider.
-            builder.RegisterWebApiFilterProvider(config);
+            builder.RegisterType<VendorAuditDbContext>().As<IVendorAuditDbContext>().InstancePerLifetimeScope();
 
-            // Set the dependency resolver to be Autofac.
+            //Register services
+            builder.RegisterType<VendorService>().As<IVendorService>().InstancePerLifetimeScope();
+            builder.RegisterType<ReleaseService>().As<IReleaseService>().InstancePerLifetimeScope();
+
+
             var container = builder.Build();
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-
-            builder.RegisterType<VendorService>().As<IVendorService>().InstancePerRequest();
-            builder.RegisterType<ReleaseService>().As<IReleaseService>().InstancePerRequest();
+            return container;
         }
     }
 }

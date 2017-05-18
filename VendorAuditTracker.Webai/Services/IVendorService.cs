@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Models;
 
 namespace VendorAuditTracker.Webapi.Services
@@ -8,5 +9,7 @@ namespace VendorAuditTracker.Webapi.Services
         Task<int> Add(Vendor vendorToSave);
         Task<Vendor> FindAsync(Vendor vendorToSave);
         Task<int> Update(Vendor vendorToSave);
+
+        Task<VendorResponse> GetAll();
     }
 }
