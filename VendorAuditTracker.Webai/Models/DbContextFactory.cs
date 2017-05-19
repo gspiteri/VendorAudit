@@ -4,27 +4,17 @@ namespace VendorAuditTracker.Webapi.Models
 {
     public class DbContextFactory : IDbContextFactory
     {
-        private IVendorAuditDbContext vendorAuditDbContext;
+        private IVendorAuditDbContext _vendorAuditDbContext;
 
         public IVendorAuditDbContext DbContext
         {
-            get
-            {
-                if (vendorAuditDbContext == null)
-                {
-                    vendorAuditDbContext = new VendorAuditDbContext();
-                }
-
-                return vendorAuditDbContext;
-            }
+            get { return _vendorAuditDbContext ?? (_vendorAuditDbContext = new VendorAuditDbContext()); }
         }
 
         public void Dispose()
         {
-            if (vendorAuditDbContext != null)
-            {
-                vendorAuditDbContext.Dispose();
-            }
+            if (_vendorAuditDbContext != null)
+                _vendorAuditDbContext.Dispose();
         }
     }
 }

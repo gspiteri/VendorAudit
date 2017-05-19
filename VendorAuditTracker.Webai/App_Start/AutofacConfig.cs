@@ -28,6 +28,7 @@ namespace VendorAuditTracker.Webapi
             builder.RegisterType<VendorService>().As<IVendorService>().InstancePerLifetimeScope();
             builder.RegisterType<ReleaseService>().As<IReleaseService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<DbContextFactory>().As<IDbContextFactory>().InstancePerLifetimeScope();
 
             var container = builder.Build();
             return container;

@@ -41,11 +41,27 @@ namespace VendorAuditTracker.Webapi.Tests.Features
             {
                 new  Vendor
                 {
-                    Id = 123456,
-                    Name = "",
-                    PrimaryContact = "",
-                    Projects = new List<Project>(),
-                    SecondaryContact = ""
+                    Id = 1,
+                    Name = "NGN",
+                    PrimaryContact = "primary",
+                    Projects = new List<Project>
+                    {
+                        new Project
+                        {
+                            Code = "PP123456",
+                            CodeDrops = 
+                            new List<CodeDrop>
+                            {
+                                new CodeDrop
+                                {
+                                    ActualDate = DateTime.Now.AddDays(5),
+                                    Id = 1,
+                                    TargetedDate = DateTime.Now,
+                                    VendorName = "NGN"
+                                }
+                            },SoftwareRelease = new SoftwareRelease()
+                        }},
+                    SecondaryContact = "secondary"
                 }
             });
 
@@ -70,9 +86,9 @@ namespace VendorAuditTracker.Webapi.Tests.Features
 
             //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Vendors.Count, "The number one documents returned should be 1");
+            Assert.AreEqual(1, result.Vendors.Count, "The number Vendors returned should be 1");
             Assert.AreEqual(result.Vendors.First().Id, 1,
-                "Wrong GUID found");
+                "Wrong Id");
         }
     }
 }
