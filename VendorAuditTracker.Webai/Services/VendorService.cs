@@ -1,7 +1,8 @@
 ﻿
-using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using VendorAuditTracker.Webapi.DataTransferObjects;
 using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Interfaces;
 using VendorAuditTracker.Webapi.Models;
@@ -48,17 +49,13 @@ namespace VendorAuditTracker.Webapi.Services
         public async Task<VendorResponse> GetAll()
         {
             var response = new VendorResponse();
-            try
-            {
-                var vendors = await _auditDbContext.Vendors.ToListAsync();
-                response.IsSuccessful = true;
-                response.Vendors = vendors;
-            }
-            catch (Exception ex)
-            {
-                response.Errors.Add(ex.ToString());
-                response.IsSuccessful = false;
-            }
+            var _vendors = new List<VendorDto>();
+
+            var vendors = await _auditDbContext.Vendors.ToListAsync();
+            response.IsSuccessful = true;
+            vendors.ForEach(i => _vendors.Add(Mapper.BusinessObjectToDto(i)));
+            response.Vendors = _vendors;
+
             return response;
         }
     }

@@ -6,6 +6,6 @@ namespace VendorAuditTracker.Webapi.DataTransferObjects.Response
 {
     public class VendorResponse : BaseResponse
     {
-        public List<Vendor> Vendors { get; set; }
+        public List<VendorDto> Vendors { get; set; }
     }
 }

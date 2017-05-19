@@ -32,9 +32,10 @@ namespace VendorAuditTracker.Webapi.Controllers
                 status = response.IsSuccessful && response.Errors.Count == 0 ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, response));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                response.Errors.Add(ex.ToString());
+                response.IsSuccessful = false;
             }
             return new NegotiatedContentResult<VendorResponse>(status, response, this);
         }

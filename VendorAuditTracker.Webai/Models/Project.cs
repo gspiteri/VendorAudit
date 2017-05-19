@@ -8,7 +8,7 @@ namespace VendorAuditTracker.Webapi.Models
         public Project()
         {
             CodeDrops = new List<CodeDrop>();
-            Vendors = new HashSet<Vendor>();
+            Vendors = new List<Vendor>();
         }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace VendorAuditTracker.Webapi.Models
         public string ExternalSystemId { get; set; }
         public virtual List<CodeDrop> CodeDrops { get; set; }
         public virtual SoftwareRelease SoftwareRelease { get; set; }
-        public virtual ICollection<Vendor> Vendors { get; set; }
+        public virtual List<Vendor> Vendors { get; set; }
     }
 }

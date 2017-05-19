@@ -21,5 +21,6 @@ namespace VendorAuditTracker.Webapi.Interfaces
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         IEnumerable<DbEntityValidationResult> GetValidationErrors();
         DbEntityEntry Entry(object entity);
+        void Dispose();
     }
 }
