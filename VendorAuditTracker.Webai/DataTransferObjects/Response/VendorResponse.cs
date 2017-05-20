@@ -1,6 +1,5 @@
 ﻿
 using System.Collections.Generic;
-using VendorAuditTracker.Webapi.Models;
 
 namespace VendorAuditTracker.Webapi.DataTransferObjects.Response
 {

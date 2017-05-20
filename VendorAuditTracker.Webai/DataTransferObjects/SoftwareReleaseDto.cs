@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace VendorAuditTracker.Webapi.DataTransferObjects
 {
-
     public class SoftwareReleaseDto
     {
         public int Id { get; set; }

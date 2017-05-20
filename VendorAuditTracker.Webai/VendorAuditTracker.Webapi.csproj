@@ -198,6 +198,7 @@
     <Compile Include="DataTransferObjects\CodeDropDto.cs" />
     <Compile Include="DataTransferObjects\ProjectDto.cs" />
     <Compile Include="DataTransferObjects\Response\BaseResponse.cs" />
+    <Compile Include="DataTransferObjects\Response\SoftwareReleaseResponse.cs" />
     <Compile Include="DataTransferObjects\Response\VendorResponse.cs" />
     <Compile Include="DataTransferObjects\SoftwareReleaseDto.cs" />
     <Compile Include="DataTransferObjects\VendorDto.cs" />

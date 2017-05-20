@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Http.Results;
 using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Services;
@@ -22,6 +23,7 @@ namespace VendorAuditTracker.Webapi.Controllers
 
         [Route("api/Vendor")]
         [HttpGet]
+        [ResponseType(typeof(VendorResponse))]
         public virtual async Task<IHttpActionResult> Get()
         {
             HttpStatusCode status = HttpStatusCode.Accepted;
