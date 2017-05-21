@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json.Converters;
 
 namespace VendorAuditTracker.Webapi
@@ -19,12 +18,19 @@ namespace VendorAuditTracker.Webapi
             SetDefaultDateFormat(config);
         }
 
-
+        /// <summary>
+        /// Gives the ability to set the date format for all returned data
+        /// </summary>
+        /// <param name="config"></param>
         public static void SetDefaultDateFormat(HttpConfiguration config)
         {
-            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd" });
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" });
         }
 
+        /// <summary>
+        /// Ability to reset the the json formater
+        /// </summary>
+        /// <param name="config"></param>
         public static void ResetDefaultDateFormat(HttpConfiguration config)
         {
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Clear();
