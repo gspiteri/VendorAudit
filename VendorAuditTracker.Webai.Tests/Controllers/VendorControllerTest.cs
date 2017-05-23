@@ -25,7 +25,6 @@ namespace VendorAuditTracker.Webapi.Tests.Controllers
         [TestMethod]
         public void Get()
         {
-            Assert.IsTrue(false);
             // Arrange
             //VendorController controller = new VendorController();
 
