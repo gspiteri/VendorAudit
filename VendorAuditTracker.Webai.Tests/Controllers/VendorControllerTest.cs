@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -8,7 +7,6 @@ using VendorAuditTracker.Webapi.Controllers;
 using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Interfaces;
 using VendorAuditTracker.Webapi.Models;
-using VendorAuditTracker.Webapi.Services;
 using VendorAuditTracker.Webapi.Tests.Utilities;
 
 namespace VendorAuditTracker.Webapi.Tests.Controllers
@@ -27,6 +25,7 @@ namespace VendorAuditTracker.Webapi.Tests.Controllers
         [TestMethod]
         public void Get()
         {
+            Assert.IsTrue(false);
             // Arrange
             //VendorController controller = new VendorController();
 
@@ -99,7 +98,7 @@ namespace VendorAuditTracker.Webapi.Tests.Controllers
                 var memberDocumentService = lifetimeScope.Resolve<VendorController>();
 
                 var a = memberDocumentService.Get();
-                
+
             }
 
             //Assert
