@@ -141,8 +141,6 @@
     <Compile Include="Controllers\VendorControllerTest.cs" />
     <Compile Include="Features\VendorManipulationFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Controllers\ValuesControllerTest.cs" />
     <Compile Include="Utilities\NSubstituteUtils.cs" />
     <Compile Include="Utilities\TestAsyncEnumerator.cs" />
     <Compile Include="Utilities\TestAsyncQueryProvider.cs" />
@@ -157,7 +155,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VendorAuditTracker.Webai\VendorAuditTracker.Webapi.csproj">
+    <ProjectReference Include="..\VendorAuditTracker.Webapi\VendorAuditTracker.Webapi.csproj">
       <Project>{30C9FAE4-F890-40EA-9840-3554FD5BBB95}</Project>
       <Name>VendorAuditTracker.Webapi</Name>
     </ProjectReference>

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using VendorAuditTracker.Webapi.DataTransferObjects;
-using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Models;
 
 namespace VendorAuditTracker.Webapi.Services
@@ -29,7 +27,7 @@ namespace VendorAuditTracker.Webapi.Services
             return await FindAsync(vendorToSave) != null;
         }
 
-        public async Task<Vendor> FindAsync(Vendor vendorToSave)
+        public async Task<object> FindAsync(Vendor vendorToSave)
         {
             return await DbContext.Vendors.FindAsync(vendorToSave);
         }
@@ -44,17 +42,12 @@ namespace VendorAuditTracker.Webapi.Services
             return await DbContext.SaveChangesAsync();
         }
 
-        public async Task<VendorResponse> GetAll()
+        public async Task<object> GetAll()
         {
-            var response = new VendorResponse();
-            var _vendors = new List<VendorDto>();
-
+            var vendorList = new List<object>();
             var vendors = await DbContext.Vendors.ToListAsync();
-            response.IsSuccessful = true;
-            vendors.ForEach(i => _vendors.Add(Mapper.BusinessObjectToDto(i)));
-            response.Vendors = _vendors;
-
-            return response;
+            vendors.ForEach(i => vendorList.Add(Mapper.BusinessObjectToDto(i)));
+            return new { Vendors = vendorList, IsSuccessful = true, Errors = new List<string>() };
         }
     }
 }

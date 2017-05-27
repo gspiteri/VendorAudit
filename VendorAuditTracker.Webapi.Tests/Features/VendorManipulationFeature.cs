@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Hosting;
 using System.Web.Http.Results;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using NSubstitute;
 using VendorAuditTracker.Webapi.Controllers;
-using VendorAuditTracker.Webapi.DataTransferObjects.Response;
 using VendorAuditTracker.Webapi.Interfaces;
 using VendorAuditTracker.Webapi.Models;
 using VendorAuditTracker.Webapi.Tests.Utilities;
@@ -86,16 +90,26 @@ namespace VendorAuditTracker.Webapi.Tests.Features
             {
                 //Retreive service from scope
                 var vendorController = lifetimeScope.Resolve<VendorController>();
+                vendorController.Request = new HttpRequestMessage();
+                vendorController.Request.Properties.Add(HttpPropertyKeys.HttpConfigurationKey, new HttpConfiguration());
+
                 var result = vendorController.Get().Result;
-                var actualResponse = result as NegotiatedContentResult<VendorResponse>;
 
                 // Assertions
-                Assert.IsInstanceOfType(actualResponse.Content, typeof(VendorResponse));
+                var actualResponse = result as ResponseMessageResult;
+                object responseContent;
+                Assert.IsTrue(result != null);
+                Assert.AreEqual(HttpStatusCode.OK, actualResponse.Response.StatusCode);
+                Assert.IsTrue(actualResponse.Response.TryGetContentValue(out responseContent));
+                var jsonObject = JObject.FromObject(responseContent);
+                var errors = jsonObject.Property("Errors").Value.ToObject<List<string>>();
+                var vendors = jsonObject.Property("Vendors").Value.ToObject<List<Vendor>>();
+                Assert.IsTrue(errors.Count == 0);
                 Assert.IsNotNull(actualResponse);
-                Assert.IsNotNull(actualResponse.Content.Vendors);
-                Assert.AreEqual(1, actualResponse.Content.Vendors.Count, "The number Vendors returned should be 1");
-                Assert.IsTrue(actualResponse.Content.Vendors[0].Projects[0].Code == "PP123456", "Invalid Project Code");
-                Assert.AreEqual(actualResponse.Content.Vendors.First().Id, 1,
+                Assert.IsNotNull(vendors);
+                Assert.AreEqual(1, vendors.Count, "The number Vendors returned should be 3");
+                Assert.IsTrue(vendors[0].Projects[0].Code == "PP123456", "Invalid Project Code");
+                Assert.AreEqual(vendors.First().Id, 1,
                     "Wrong Id");
                 _mockDbContext.Received(1);
             }

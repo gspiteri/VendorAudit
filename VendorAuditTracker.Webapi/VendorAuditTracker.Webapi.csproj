@@ -193,7 +193,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DiagnosticController.cs" />
     <Compile Include="Controllers\ReleaseController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="DataTransferObjects\CodeDropDto.cs" />
     <Compile Include="DataTransferObjects\ProjectDto.cs" />

@@ -3,16 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendorAuditTracker.Webapi", "VendorAuditTracker.Webai\VendorAuditTracker.Webapi.csproj", "{30C9FAE4-F890-40EA-9840-3554FD5BBB95}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendorAuditTracker.Webapi.Tests", "VendorAuditTracker.Webai.Tests\VendorAuditTracker.Webapi.Tests.csproj", "{307F9A26-FDFA-438A-9AE0-E6670F933713}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{78F4B1C0-476A-41D7-AF59-1EE8EE0D06EF}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendorAuditTracker.Webapi", "VendorAuditTracker.Webapi\VendorAuditTracker.Webapi.csproj", "{30C9FAE4-F890-40EA-9840-3554FD5BBB95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendorAuditTracker.Webapi.Tests", "VendorAuditTracker.Webapi.Tests\VendorAuditTracker.Webapi.Tests.csproj", "{307F9A26-FDFA-438A-9AE0-E6670F933713}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
