@@ -137,7 +137,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutofacResolver.cs" />
     <Compile Include="Controllers\VendorControllerTest.cs" />
     <Compile Include="Features\VendorManipulationFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

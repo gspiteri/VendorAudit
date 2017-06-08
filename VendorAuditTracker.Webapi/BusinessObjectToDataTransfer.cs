@@ -8,7 +8,6 @@ namespace VendorAuditTracker.Webapi
 {
     public static class Mapper
     {
-
         public static VendorDto BusinessObjectToDto(Vendor businessObject)
         {
             if (businessObject == null || businessObject.Projects == null)

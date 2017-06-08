@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -21,11 +20,14 @@ namespace VendorAuditTracker.Webapi.Controllers
         [Route("api/Vendor")]
         [HttpGet]
         public virtual async Task<IHttpActionResult> Get()
+
         {
             try
             {
                 dynamic response = await _vendorService.GetAll();
-                var status = response.IsSuccessful && response.Errors.Count == 0 ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
+                var status = response.IsSuccessful && response.Errors.Count == 0
+                    ? HttpStatusCode.OK
+                    : HttpStatusCode.BadRequest;
                 return ResponseMessage(Request.CreateResponse(status, response as object));
             }
             catch (Exception ex)
