@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Microsoft.Owin;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 using Nancy.Diagnostics;
 using Nancy.Responses;
 using Nancy.Serialization.JsonNet;
+using Owin;
+using VendorAuditTracker.Webapi;
 using VendorAuditTracker.Webapi.Interfaces;
 using VendorAuditTracker.Webapi.Models;
 using VendorAuditTracker.Webapi.Services;
 
+[assembly: OwinStartup(typeof(Startup))]
 namespace VendorAuditTracker.Webapi
 {
-    public class Bootstrapper : AutofacNancyBootstrapper
+    public class Startup : AutofacNancyBootstrapper
     {
         protected async override void ApplicationStartup(ILifetimeScope container,
            IPipelines pipelines)
@@ -68,15 +73,6 @@ namespace VendorAuditTracker.Webapi
             });
         }
 
-        protected override void ConfigureRequestContainer(ILifetimeScope container, NancyContext context)
-        {
-            base.ConfigureRequestContainer(container, context);
-
-            container.Update(builder =>
-            {
-
-            });
-        }
 
         #region Helper Methods
         private static void LogException(Exception ex)
