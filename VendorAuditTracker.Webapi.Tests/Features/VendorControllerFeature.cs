@@ -9,10 +9,18 @@ using VendorAuditTracker.Webapi.Interfaces;
 using VendorAuditTracker.Webapi.Models;
 using VendorAuditTracker.Webapi.Tests.Utilities;
 
-namespace VendorAuditTracker.Webapi.Tests.Controllers
+namespace VendorAuditTracker.Webapi.Tests.Features
 {
+    /// <summary>
+    /// @feature: Vendor Controller
+    /// </summary>
+    /// <remarks>
+    /// As an authorised user
+    /// When a vendors details  is required
+    /// Then vendors details should be returned via the controller
+    /// </remarks>
     [TestClass]
-    public class VendorControllerTest
+    public class VendorControllerFeature
     {
         private IDbContextFactory _mockDbContextFactory;
 

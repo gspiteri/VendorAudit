@@ -17,9 +17,16 @@ using VendorAuditTracker.Webapi.Tests.Utilities;
 
 namespace VendorAuditTracker.Webapi.Tests.Features
 {
-
+    /// <summary>
+    /// @feature: Vendor Details
+    /// </summary>
+    /// <remarks>
+    /// As an authorised user
+    /// When a vendors details  is required
+    /// Then vendors details should be returned 
+    /// </remarks>
     [TestClass]
-    public class VendorManipulationFeature
+    public class VendorFeature
     {
         private IDbContextFactory _mockDbContextFactory;
         private IVendorAuditDbContext _mockDbContext;
